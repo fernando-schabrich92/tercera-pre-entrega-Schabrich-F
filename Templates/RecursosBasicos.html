@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Recursos Basicos</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'estilo.css' %}">
+</head>
+<body>
+	<h1> Recursos Basicos </h1>
+	{% include 'barradenavegacion.html' %}
+	<section>
+		{% for elemento in articulos %}
+		<article>
+			<h3>{{ elemento.nombre }}</h3>
+			<p> {{ elemento.contenido }} </p>
+			<img src="{{ elemento.imagen}}">
+			<footer> Profesor: {{ elemento.autor }} </footer>
+		</article>
+		{% endfor %}
+	</section>
+	<section>
+		<form action="" method="post">
+			{% csrf_token %}
+			<h2>Contactanos</h2>
+			<input type="text" name="nombre" placeholder="Tu nombre"> <br>
+			Tus datos de contacto <br>
+			<textarea name="infocontacto">
+				
+			</textarea> <br>
+			<input type="submit" name="enviar" value="Enviar">
+			{% if mensaje %}
+			{{ mensaje }}
+			{% endif %}
+		</form>
+	</section>
+
+</body>
+</html>
